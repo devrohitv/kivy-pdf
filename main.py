@@ -7,12 +7,6 @@ from kivy.uix.filechooser import FileChooserListView
 from kivy.utils import platform
 from jnius import autoclass, cast
 
-if platform == "android":
-    from android.permissions import request_permissions, Permission
-    request_permissions([Permission.WRITE_EXTERNAL_STORAGE,
-    Permission.READ_EXTERNAL_STORAGE])
-
-
 class PDFViewerApp(App):
     def open_pdf_external_viewer_android(self, pdf_file_path):
         if platform == 'android':
@@ -50,9 +44,8 @@ class PDFViewerApp(App):
 
     def on_start(self, **kwargs):
 
-        if platform == "android":
-            from android.permissions import request_permissions, Permission
-            request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+        from android.permissions import request_permissions, Permission
+        request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
 
 
 if __name__ == '__main__':
