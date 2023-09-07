@@ -9,7 +9,7 @@ from jnius import autoclass, cast
 
 if platform == "android":
     from android.permissions import request_permissions, Permission
-    request_permissions([Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE,
+    request_permissions([Permission.WRITE_EXTERNAL_STORAGE,
     Permission.READ_EXTERNAL_STORAGE])
 
 
@@ -44,16 +44,9 @@ class PDFViewerApp(App):
     def open_file(self, selection):
         print(selection)
 
-    # def open_pdf(self, instance):
-    #     pdf_file_path = 'pd.pdf'  # Replace with the actual PDF file path
-
-        if os.path.exists(selection[-1]):
-            if platform == 'android':
+       if os.path.exists(selection[-1]):
+           if platform == 'android':
                 self.open_pdf_external_viewer_android(selection[-1])
-            else:
-                webbrowser.open(selection[-1])
-        else:
-            print("PDF file not found!")
 
     def on_start(self, **kwargs):
 
